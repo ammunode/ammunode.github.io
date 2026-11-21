@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#171717">
 
-<title>Continue reading | @sample.writing</title>
+<title>Continue reading | @ammu.fragments</title>
 
 <style>
 * {
@@ -41,14 +41,13 @@ body {
 }
 
 .avatar {
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: #303030;
-  font-family: Georgia, serif;
-  font-size: 25px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid #444;
+  flex-shrink: 0;
 }
 
 .handle {
@@ -102,13 +101,24 @@ h1 {
   opacity: .8;
 }
 
+.open-button:focus-visible,
+.fallback:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
+
 .fallback {
   display: block;
   margin-top: 18px;
   color: #aaa;
   text-align: center;
   font-size: 12px;
+  line-height: 1.6;
   text-decoration: none;
+}
+
+.fallback:hover {
+  color: #fff;
 }
 
 .footer {
@@ -121,6 +131,8 @@ h1 {
 .error {
   color: #ff8c8c;
   text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
 }
 </style>
 </head>
@@ -130,9 +142,14 @@ h1 {
 <main class="card">
 
   <div class="profile">
-    <div class="avatar">s.</div>
+    <img
+      class="avatar"
+      src="avatar.webp"
+      alt="@ammu.fragments"
+    >
+
     <div>
-      <div class="handle">@sample.writing</div>
+      <div class="handle">@ammu.fragments</div>
       <div class="bio">Malayalam · Alternative writing</div>
     </div>
   </div>
@@ -142,7 +159,7 @@ h1 {
   <h1>ഇനിയും ചിലത് പറയാനുണ്ട്.</h1>
 
   <div class="description">
-    ഇതിന്റെ ബാക്കി ഭാഗം ഇൻസ്റ്റഗ്രാമിലുണ്ട്. അവിടെ വായിക്കൂ..
+    ഇതിന്റെ ബാക്കി ഭാഗം ഇൻസ്റ്റഗ്രാമിലുണ്ട്. അവിടെ വായിക്കാം.
   </div>
 
   <div id="content">
@@ -156,7 +173,7 @@ h1 {
 </main>
 
 <script>
-const params = new URLSearchParams(location.search);
+const params = new URLSearchParams(window.location.search);
 const postId = params.get("p");
 
 const content = document.getElementById("content");
@@ -171,24 +188,37 @@ if (postId && /^[A-Za-z0-9_-]+$/.test(postId)) {
     `#Intent;scheme=https;package=com.instagram.android;end`;
 
   content.innerHTML = `
-    <a class="open-button"
-       href="${intentURL}">
-       <span>◎</span>
-       Continue reading on Instagram
-       <span>↗</span>
+    <a
+      class="open-button"
+      href="${intentURL}"
+      aria-label="Open this post in Instagram"
+    >
+      <span aria-hidden="true">◎</span>
+      Continue reading on Instagram
+      <span aria-hidden="true">↗</span>
     </a>
 
-    <a class="fallback"
-       href="${instagramURL}">
-       Open Instagram web instead
+    <a
+      class="fallback"
+      href="${instagramURL}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Having trouble opening Instagram? Open in browser
     </a>
   `;
 
 } else {
-  content.innerHTML =
-    '<p class="error">Invalid or missing post ID.</p>';
+
+  content.innerHTML = `
+    <p class="error">
+      Invalid or missing Instagram post ID.
+    </p>
+  `;
+
 }
 </script>
 
 </body>
 </html>
+```
