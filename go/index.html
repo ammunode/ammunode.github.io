@@ -2,38 +2,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Redirecting to Instagram</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171717">
+
+<title>Continue reading | @sample.writing</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #101010;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 390px;
+  padding: 26px;
+  border: 1px solid #333;
+  border-radius: 20px;
+  background: #191919;
+  box-shadow: 0 15px 50px #0008;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #303030;
+  font-family: Georgia, serif;
+  font-size: 25px;
+}
+
+.handle {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.bio {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.divider {
+  height: 1px;
+  background: #383838;
+  margin: 24px 0;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: 27px;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.description {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.open-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 11px;
+  background: #E1306C;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  transition: opacity .2s;
+}
+
+.open-button:active {
+  opacity: .8;
+}
+
+.fallback {
+  display: block;
+  margin-top: 18px;
+  color: #aaa;
+  text-align: center;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.footer {
+  color: #666;
+  text-align: center;
+  font-size: 11px;
+  margin-top: 25px;
+}
+
+.error {
+  color: #ff8c8c;
+  text-align: center;
+}
+</style>
 </head>
+
 <body>
-  <p id="status">Opening Instagram...</p>
-  <a id="fallback" href="#">Open Instagram manually</a>
 
-  <script>
-    const params = new URLSearchParams(location.search);
-    const postId = params.get("p");
+<main class="card">
 
-    const status = document.getElementById("status");
-    const fallback = document.getElementById("fallback");
+  <div class="profile">
+    <div class="avatar">s.</div>
+    <div>
+      <div class="handle">@sample.writing</div>
+      <div class="bio">Malayalam · Alternative writing</div>
+    </div>
+  </div>
 
-    if (!postId || !/^[A-Za-z0-9_-]+$/.test(postId)) {
-      status.textContent = "Invalid or missing Instagram post ID.";
-      fallback.style.display = "none";
-    } else {
-      const webUrl =
-        `https://www.instagram.com/p/${postId}/`;
+  <div class="divider"></div>
 
-      const intentUrl =
-        `intent://www.instagram.com/p/${postId}/` +
-        `#Intent;scheme=https;package=com.instagram.android;` +
-        `S.browser_fallback_url=${encodeURIComponent(webUrl)};end`;
+  <h1>ഇനിയും ചിലത് പറയാനുണ്ട്.</h1>
 
-      fallback.href = intentUrl;
+  <div class="description">
+    ഇതിന്റെ ബാക്കി ഭാഗം ഇൻസ്റ്റഗ്രാമിലുണ്ട്. അവിടെ വായിക്കൂ..
+  </div>
 
-      // Attempt automatic app launch
-      window.location.replace(intentUrl);
-    }
-  </script>
+  <div id="content">
+    <p class="error">Preparing your link...</p>
+  </div>
+
+  <div class="footer">
+    A little more than words.
+  </div>
+
+</main>
+
+<script>
+const params = new URLSearchParams(location.search);
+const postId = params.get("p");
+
+const content = document.getElementById("content");
+
+if (postId && /^[A-Za-z0-9_-]+$/.test(postId)) {
+
+  const instagramURL =
+    `https://www.instagram.com/p/${postId}/`;
+
+  const intentURL =
+    `intent://www.instagram.com/p/${postId}/` +
+    `#Intent;scheme=https;package=com.instagram.android;end`;
+
+  content.innerHTML = `
+    <a class="open-button"
+       href="${intentURL}">
+       <span>◎</span>
+       Continue reading on Instagram
+       <span>↗</span>
+    </a>
+
+    <a class="fallback"
+       href="${instagramURL}">
+       Open Instagram web instead
+    </a>
+  `;
+
+} else {
+  content.innerHTML =
+    '<p class="error">Invalid or missing post ID.</p>';
+}
+</script>
+
 </body>
 </html>
