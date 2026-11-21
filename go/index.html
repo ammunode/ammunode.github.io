@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redirecting to Instagram</title>
+</head>
+<body>
+  <p id="status">Opening Instagram...</p>
+  <a id="fallback" href="#">Open Instagram manually</a>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const postId = params.get("p");
+
+    const status = document.getElementById("status");
+    const fallback = document.getElementById("fallback");
+
+    if (!postId || !/^[A-Za-z0-9_-]+$/.test(postId)) {
+      status.textContent = "Invalid or missing Instagram post ID.";
+      fallback.style.display = "none";
+    } else {
+      const webUrl =
+        `https://www.instagram.com/p/${postId}/`;
+
+      const intentUrl =
+        `intent://www.instagram.com/p/${postId}/` +
+        `#Intent;scheme=https;package=com.instagram.android;` +
+        `S.browser_fallback_url=${encodeURIComponent(webUrl)};end`;
+
+      fallback.href = intentUrl;
+
+      // Attempt automatic app launch
+      window.location.replace(intentUrl);
+    }
+  </script>
+</body>
+</html>
