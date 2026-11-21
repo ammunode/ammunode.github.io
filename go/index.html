@@ -1,343 +1,278 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#171717">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101012">
+  <title>ammu.fragments</title>
 
-<title>Continue reading | @ammu.fragments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;500;700&display=swap" rel="stylesheet">
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 5vh 20px 24px;
-  background: #101010;
-  color: #fff;
-  font-family: Arial, sans-serif;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 4vh 16px 20px;
+      background: #101012;
+      color: #eee8e3;
+      font-family: 'Manjari', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
 
-.card {
-  position: relative;
-  width: 100%;
-  max-width: 390px;
-  padding: 23px;
-  border: 1px solid #333;
-  border-radius: 20px;
-  background: #191919;
-  box-shadow: 0 15px 50px #0008;
-}
+    .card {
+      width: 100%;
+      max-width: 390px;
+      padding: 22px 20px;
+      background: #19181b;
+      border: 1px solid #302b31;
+      border-radius: 17px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.25);
+    }
 
-/* Profile section */
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
 
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-right: 36px;
-}
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  border: 1px solid #444;
-  flex-shrink: 0;
-}
+    .avatar {
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #51404b;
+      flex-shrink: 0;
+    }
 
-.handle {
-  font-weight: 700;
-  font-size: 15px;
-}
+    .handle {
+      color: #f2dce7;
+      font-size: 15px;
+      font-weight: 700;
+    }
 
-.bio {
-  color: #999;
-  font-size: 12px;
-  margin-top: 5px;
-}
+    .bio {
+      color: #b9aeb5;
+      font-size: 12px;
+      margin-top: 2px;
+    }
 
-/* Instagram icon - top right */
+    .insta-icon {
+      color: #d99ab5;
+      width: 21px;
+      height: 21px;
+    }
 
-.top-instagram {
-  position: absolute;
-  top: 27px;
-  right: 24px;
-  color: #E1306C;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    h1 {
+      color: #f4e9e7;
+      font-size: 24px;
+      line-height: 1.55;
+      font-weight: 500;
+      margin: 0 0 8px;
+    }
 
-/* Divider */
+    .description {
+      color: #c9bec4;
+      font-size: 15px;
+      line-height: 1.75;
+      margin: 0 0 19px;
+    }
 
-.divider {
-  height: 1px;
-  background: #383838;
-  margin: 19px 0 20px;
-}
+    /* Primary action: copy handle */
+    .copy-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      padding: 13px 14px;
+      border: none;
+      border-radius: 11px;
+      background: #d978a3;
+      color: #21151c;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s ease;
+    }
 
-/* Main content */
+    .copy-button:hover {
+      background: #e58bb2;
+    }
 
-h1 {
-  font-family: Georgia, serif;
-  font-size: 27px;
-  line-height: 1.4;
-  margin: 0 0 9px;
-}
+    .copy-button svg {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+    }
 
-.description {
-  color: #aaa;
-  font-size: 14px;
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
+    .instruction {
+      color: #c5b5bd;
+      font-size: 12px;
+      line-height: 1.65;
+      text-align: center;
+      margin: 8px 0 15px;
+      overflow-wrap: anywhere;
+    }
 
-/* Main Instagram button */
+    /* Secondary action: open Instagram */
+    .main-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid #765365;
+      border-radius: 11px;
+      background: #292128;
+      color: #edc4d7;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background .2s ease;
+    }
 
-.open-button {
-  display: grid;
-  grid-template-columns: 28px 1fr 34px;
-  align-items: center;
-  gap: 9px;
-  width: 100%;
-  min-height: 58px;
-  padding: 9px 12px;
-  border-radius: 12px;
-  background: #E1306C;
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 700;
-  transition: background .2s, transform .2s;
-}
+    .main-button:hover {
+      background: #352631;
+    }
 
-.open-button:hover {
-  background: #d52761;
-}
+    .main-button svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
 
-.open-button:active {
-  transform: scale(.98);
-}
+    .footer {
+      color: #827781;
+      font-family: sans-serif;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-top: 23px;
+    }
 
-.instagram-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    @media (max-width: 360px) {
+      body {
+        padding: 3vh 12px 16px;
+      }
 
-.button-text {
-  text-align: center;
-}
+      .card {
+        padding: 19px 16px;
+      }
 
-/* Right arrow circle */
+      h1 {
+        font-size: 22px;
+      }
 
-.arrow-circle {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #ffffff25;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Browser fallback */
-
-.fallback {
-  display: block;
-  margin-top: 15px;
-  color: #aaa;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.6;
-  text-decoration: none;
-}
-
-.fallback:hover {
-  color: #fff;
-}
-
-/* Footer */
-
-.footer {
-  color: #666;
-  text-align: center;
-  font-size: 11px;
-  margin-top: 19px;
-}
-
-.error {
-  color: #ff8c8c;
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* Accessibility */
-
-.open-button:focus-visible,
-.fallback:focus-visible {
-  outline: 2px solid white;
-  outline-offset: 4px;
-}
-
-/* Larger screens */
-
-@media (min-height: 750px) and (min-width: 500px) {
-  body {
-    padding-top: 9vh;
-  }
-}
-</style>
+      .description {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <main class="card">
 
-<main class="card">
+    <div class="top">
+      <div class="profile">
+        <img class="avatar" src="avatar.webp" alt="Profile picture">
+        <div>
+          <div class="handle">@ammu.fragments</div>
+          <div class="bio">Malayalam · Alternative writing</div>
+        </div>
+      </div>
 
-  <!-- Profile -->
-
-  <div class="profile">
-
-    <img
-      class="avatar"
-      src="avatar.webp"
-      alt="@ammu.fragments"
-    >
-
-    <div>
-      <div class="handle">@ammu.fragments</div>
-      <div class="bio">Malayalam · Alternative writing</div>
+      <svg class="insta-icon" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="1.7">
+        <rect x="3" y="3" width="18" height="18" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1"
+                fill="currentColor" stroke="none"/>
+      </svg>
     </div>
 
-  </div>
+    <h1>ഇനിയും ചിലത് പറയാനുണ്ട്.</h1>
 
-  <!-- Top-right Instagram icon -->
-
-  <div class="top-instagram" aria-hidden="true">
-    <svg width="27" height="27"
-         viewBox="0 0 24 24"
-         fill="none"
-         stroke="currentColor"
-         stroke-width="1.8"
-         stroke-linecap="round"
-         stroke-linejoin="round">
-      <rect x="3" y="3" width="18" height="18" rx="5"/>
-      <circle cx="12" cy="12" r="4"/>
-      <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/>
-    </svg>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- Heading -->
-
-  <h1>ഇനിയും ചിലത് പറയാനുണ്ട്.</h1>
-
-  <div class="description">
-    ഇതിന്റെ ബാക്കി ഭാഗം ഇൻസ്റ്റഗ്രാമിലുണ്ട്. അവിടെ വായിക്കാം.
-  </div>
-
-  <!-- Dynamic Instagram link -->
-
-  <div id="content">
-    <p class="error">Preparing your link...</p>
-  </div>
-
-  <!-- Footer -->
-
-  <div class="footer">
-    A little more than words.
-  </div>
-
-</main>
-
-<script>
-const params = new URLSearchParams(window.location.search);
-const postId = params.get("p");
-
-const content = document.getElementById("content");
-
-if (postId && /^[A-Za-z0-9_-]+$/.test(postId)) {
-
-  const instagramURL =
-    `https://www.instagram.com/p/${postId}/`;
-
-  const intentURL =
-    `intent://www.instagram.com/p/${postId}/` +
-    `#Intent;scheme=https;package=com.instagram.android;end`;
-
-  content.innerHTML = `
-    <a
-      class="open-button"
-      href="${intentURL}"
-      aria-label="Open this post in Instagram"
-    >
-
-      <span class="instagram-icon" aria-hidden="true">
-        <svg width="25" height="25"
-             viewBox="0 0 24 24"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="1.9"
-             stroke-linecap="round"
-             stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="18" cy="6" r="1"
-                  fill="currentColor" stroke="none"/>
-        </svg>
-      </span>
-
-      <span class="button-text">
-        Continue reading on Instagram
-      </span>
-
-      <span class="arrow-circle" aria-hidden="true">
-        <svg width="18" height="18"
-             viewBox="0 0 24 24"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="2"
-             stroke-linecap="round"
-             stroke-linejoin="round">
-          <path d="M7 17L17 7"/>
-          <path d="M7 7h10v10"/>
-        </svg>
-      </span>
-
-    </a>
-
-    <a
-      class="fallback"
-      href="${instagramURL}"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Having trouble opening Instagram? Open in browser
-    </a>
-  `;
-
-} else {
-
-  content.innerHTML = `
-    <p class="error">
-      Invalid or missing Instagram post ID.
+    <p class="description">
+      ഇതിന്റെ ബാക്കി ഭാഗം ഇൻസ്റ്റഗ്രാമിലുണ്ട്.
+      അവിടെ വായിക്കാം.
     </p>
-  `;
 
-}
-</script>
+    <button class="copy-button" id="copyHandle">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8" y="8" width="12" height="12" rx="2"/>
+        <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+      </svg>
+      <span> @ammu.fragments കോപ്പി ചെയ്യാം </span>
+    </button>
 
+    <p class="instruction" id="copyMessage" aria-live="polite">
+      ഹാൻഡിൽ കോപ്പി ചെയ്ത് ഇൻസ്റ്റഗ്രാമിൽ സെർച്ച് ചെയ്യൂ.
+    </p>
+
+    <a class="main-button" id="openInstagram" href="#">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.8">
+        <rect x="3" y="3" width="18" height="18" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1"
+                fill="currentColor" stroke="none"/>
+      </svg>
+      <span>ഇൻസ്റ്റഗ്രാമിൽ വായിക്കാം</span>
+    </a>
+
+    <div class="footer">
+      A LITTLE MORE THAN WORDS.
+    </div>
+
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const postId = params.get('p');
+
+    const openButton = document.getElementById('openInstagram');
+
+    if (postId && /^[A-Za-z0-9_-]+$/.test(postId)) {
+      openButton.href =
+        `intent://www.instagram.com/p/${postId}/#Intent;scheme=https;package=com.instagram.android;end`;
+    } else {
+      openButton.href =
+        'intent://www.instagram.com/ammu.fragments/#Intent;scheme=https;package=com.instagram.android;end';
+    }
+
+    document.getElementById('copyHandle').addEventListener('click', async () => {
+      const message = document.getElementById('copyMessage');
+
+      try {
+        await navigator.clipboard.writeText('@ammu.fragments');
+        message.textContent =
+          'ഹാൻഡിൽ കോപ്പി ചെയ്തു. ഇൻസ്റ്റഗ്രാമിൽ സെർച്ച് ചെയ്യൂ.';
+      } catch (error) {
+        message.textContent =
+          'കോപ്പി ചെയ്യാൻ കഴിഞ്ഞില്ല. @ammu.fragments കൈകൊണ്ട് കോപ്പി ചെയ്യൂ.';
+      }
+    });
+  </script>
 </body>
 </html>
